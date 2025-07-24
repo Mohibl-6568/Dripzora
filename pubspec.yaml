@@ -58,9 +58,61 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - images/1/1_1.jpg
+    - images/1/1_2.png
+    - images/1/1_3.png
+    - images/1/1_4.png
+    - images/1/1_5.png
+    - images/2/2_1.jpg
+    - images/2/2_2.png
+    - images/2/2_3.png
+    - images/2/2_4.png
+    - images/2/2_5.png
+    - images/3/3_1.jpg
+    - images/3/3_2.png
+    - images/3/3_3.png
+    - images/3/3_4.png
+    - images/4/4_1.png
+    - images/4/4_2.png
+    - images/4/4_3.png
+    - images/5/5_1.png
+    - images/5/5_2.png
+    - images/6/6_1.png
+    - images/6/6_2.png
+    - images/6/6_3.png
+    - images/7/7_1.png
+    - images/7/7_2.png
+    - images/7/7_3.png
+    - images/8/8_1.jpg
+    - images/8/8_2.jpg
+    - images/8/8_3.jpg
+    - images/8/8_4.jpg
+    - images/9/9_1.jpg
+    - images/9/9_2.jpg
+    - images/9/9_3.jpg
+    - images/9/9_4.jpg
+    - images/9/9_5.jpg
+    - images/10/10_1.jpg
+    - images/10/10_2.jpg
+    - images/10/10_3.jpg
+    - images/10/10_4.jpg
+    - images/10/10_5.jpg
+    - images/11/11_1.jpg
+    - images/11/11_2.jpg
+    - images/11/11_3.jpg
+    - images/12/12_1.jpg
+    - images/12/12_2.jpg
+    - images/12/12_3.jpg
+    - images/13/13_1.jpg
+    - images/13/13_2.jpg
+    - images/13/13_3.jpg
+    - images/14/14_1.jpg
+    - images/14/14_2.jpg
+    - images/14/14_3.jpg
+    - images/15/15_1.jpg
+    - images/15/15_2.jpg
+    - images/15/15_3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
