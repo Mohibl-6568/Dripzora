@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
-import 'firstpage.dart'; // import your first page here
+import 'get_started_page.dart';
+import 'login_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Clothing App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const FirstPage(),
+      title: 'Clothing App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        fontFamily: 'Roboto',
+      ),
+      home: GetStartedPage(),
+      routes: {
+        '/login': (context) => LoginPage(),
+      },
     );
   }
 }
+
