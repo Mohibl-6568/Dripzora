@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dripzora/explore_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -12,16 +13,14 @@ class LoginPage extends StatelessWidget {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/loginpage.jpeg"),
+                image: AssetImage("assets/images/img.jpg"),
                 fit: BoxFit.cover,
               ),
             ),
           ),
 
           // Overlay for dimming
-          Container(
-            color: Colors.black.withOpacity(0.5),
-          ),
+          Container(color: Colors.black.withOpacity(0.5)),
 
           // Login form
           Center(
@@ -87,7 +86,11 @@ class LoginPage extends StatelessWidget {
 
                   // Login button
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => ExplorePage()),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 16),
