@@ -7,17 +7,11 @@ class Squarewidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double containerSize = MediaQuery.of(context).size.width / 3;
-
-    return Container(
-      width: containerSize,
-      height: containerSize,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        image: DecorationImage(
-          image: AssetImage(item.imagePaths[0]),
-          fit: BoxFit.cover,
-        ),
+    return AspectRatio(
+      aspectRatio: 1 / 1, // Ensures the widget is always a square
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15), // Consistent corner radius
+        child: Image.asset(item.imagePaths[0], fit: BoxFit.cover),
       ),
     );
   }

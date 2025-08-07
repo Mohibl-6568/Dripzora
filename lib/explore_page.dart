@@ -5,56 +5,16 @@ import 'explore_page_widgets/rectanglewidget.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
+
   @override
   State<ExplorePage> createState() => _ExplorePageState();
 }
 
-List<ItemStructure> items = itemStructures;
-
 class _ExplorePageState extends State<ExplorePage> {
-  final List<Widget> leftColumn = [];
-  final List<Widget> midColumn = [];
-  final List<Widget> rightColumn = [];
-
-  void splitItemsIntoColumns() {
-    leftColumn.clear();
-    midColumn.clear();
-    rightColumn.clear();
-
-    int index = 0;
-    int leftIndex = 1;
-    int rightIndex = 0;
-
-    while (index < items.length) {
-      // LEFT COLUMN
-      if (index < items.length) {
-        if (leftIndex % 3 != 0) {
-          leftColumn.add(Squarewidget(item: items[index]));
-        } else {
-          leftColumn.add(Rectanglewidget(item: items[index]));
-        }
-        index++;
-        leftIndex++;
-      }
-
-      // MID COLUMN (Always square)
-      if (index < items.length) {
-        midColumn.add(Squarewidget(item: items[index]));
-        index++;
-      }
-
-      // RIGHT COLUMN
-      if (index < items.length) {
-        if (rightIndex == 0 || rightIndex % 3 == 0) {
-          rightColumn.add(Rectanglewidget(item: items[index]));
-        } else {
-          rightColumn.add(Squarewidget(item: items[index]));
-        }
-        index++;
-        rightIndex++;
-      }
-    }
-  }
+  final List<ItemStructure> allItems = itemStructures;
+  final List<ItemStructure> leftColumnItems = [];
+  final List<ItemStructure> midColumnItems = [];
+  final List<ItemStructure> rightColumnItems = [];
 
   @override
   void initState() {
@@ -62,55 +22,120 @@ class _ExplorePageState extends State<ExplorePage> {
     splitItemsIntoColumns();
   }
 
+  void splitItemsIntoColumns() {
+    leftColumnItems.clear();
+    midColumnItems.clear();
+    rightColumnItems.clear();
+
+    //int leftIndex = 0;
+    //int midIndex = 0;
+    //int rightIndex = 0;
+
+    for (int i = 0; i < allItems.length; i++) {
+      if (i % 3 == 0) {
+        leftColumnItems.add(allItems[i]);
+      } else if (i % 3 == 1) {
+        midColumnItems.add(allItems[i]);
+      } else {
+        rightColumnItems.add(allItems[i]);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double columnWidth = screenWidth / 3;
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(0.0),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: Column(
             children: [
-              // Search bar
-              TextField(
-                style: const TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  hintText: 'Search',
-                  hintStyle: const TextStyle(color: Colors.white54),
-                  filled: true,
-                  fillColor: Colors.grey[900],
-                  prefixIcon: const Icon(Icons.search, color: Colors.white54),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(28),
-                    borderSide: BorderSide.none,
+              // Search bar with padding for a cleaner look
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0, bottom: 20.0),
+                child: TextField(
+                  style: const TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    hintText: 'Search',
+                    hintStyle: const TextStyle(color: Colors.white54),
+                    filled: true,
+                    fillColor: Colors.grey[900],
+                    prefixIcon: const Icon(Icons.search, color: Colors.white54),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(28),
+                      borderSide: BorderSide.none,
+                    ),
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
 
-              // Unified vertical scroll for all three columns
+              // Aesthetic grid of items
               Expanded(
-                child: SingleChildScrollView(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: columnWidth,
-                        child: Column(children: leftColumn),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Left Column
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: leftColumnItems.length,
+                        itemBuilder: (context, index) {
+                          // Dynamic sizing based on a simple pattern
+                          if (index % 3 == 0) {
+                            return Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Rectanglewidget(
+                                item: leftColumnItems[index],
+                              ),
+                            );
+                          }
+                          return Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Squarewidget(item: leftColumnItems[index]),
+                          );
+                        },
                       ),
-                      SizedBox(
-                        width: columnWidth,
-                        child: Column(children: midColumn),
+                    ),
+                    const SizedBox(width: 10),
+
+                    // Mid Column
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: midColumnItems.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Squarewidget(item: midColumnItems[index]),
+                          );
+                        },
                       ),
-                      SizedBox(
-                        width: columnWidth,
-                        child: Column(children: rightColumn),
+                    ),
+                    const SizedBox(width: 10),
+
+                    // Right Column
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: rightColumnItems.length,
+                        itemBuilder: (context, index) {
+                          // Dynamic sizing based on a simple pattern
+                          if (index % 2 == 0) {
+                            return Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Squarewidget(
+                                item: rightColumnItems[index],
+                              ),
+                            );
+                          }
+                          return Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Rectanglewidget(
+                              item: rightColumnItems[index],
+                            ),
+                          );
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],

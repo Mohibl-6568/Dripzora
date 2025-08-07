@@ -7,17 +7,11 @@ class Rectanglewidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double containerSize = MediaQuery.of(context).size.width / 3;
-
-    return Container(
-      width: containerSize,
-      height: containerSize * 2,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        image: DecorationImage(
-          image: AssetImage(item.imagePaths[0]),
-          fit: BoxFit.cover,
-        ),
+    return AspectRatio(
+      aspectRatio: 1 / 2, // A tall rectangle
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20), // Consistent corner radius
+        child: Image.asset(item.imagePaths[0], fit: BoxFit.cover),
       ),
     );
   }
