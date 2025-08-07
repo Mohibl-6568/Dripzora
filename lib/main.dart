@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'get_started_page.dart';
-import 'login_page.dart';
+import 'PAGES/get_started_page.dart';
+import 'PAGES/login_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,15 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Clothing App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Roboto',
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Roboto'),
       home: GetStartedPage(),
-      routes: {
-        '/login': (context) => LoginPage(),
-      },
+      routes: {'/login': (context) => LoginPage()},
     );
   }
 }
-

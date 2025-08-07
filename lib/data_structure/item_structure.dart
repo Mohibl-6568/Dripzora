@@ -5,12 +5,14 @@ class ItemStructure {
   String description;
   List<String> imagePaths;
   List<Color> colors;
+  double price;
 
   ItemStructure({
     required this.title,
     required this.description,
     required this.imagePaths,
     required this.colors,
+    required this.price,
   });
 }
 
@@ -26,6 +28,7 @@ List<ItemStructure> itemStructures = [
       'assets/images/1/1-5.png',
     ],
     colors: [Colors.green, Colors.blue, Colors.brown],
+    price: 15.99,
   ),
   ItemStructure(
     title: 'Urban',
@@ -38,6 +41,7 @@ List<ItemStructure> itemStructures = [
       'assets/images/2/2-5.png',
     ],
     colors: [Colors.grey, Colors.blueGrey, Colors.black],
+    price: 15.99,
   ),
   ItemStructure(
     title: 'Wildlife',
@@ -49,6 +53,7 @@ List<ItemStructure> itemStructures = [
       'assets/images/3/3-4.png',
     ],
     colors: [Colors.brown, Colors.orange, Colors.green],
+    price: 15.99,
   ),
   ItemStructure(
     title: 'Abstract',
@@ -59,12 +64,14 @@ List<ItemStructure> itemStructures = [
       'assets/images/4/4-3.png',
     ],
     colors: [Colors.purple, Colors.indigo, Colors.pink],
+    price: 15.99,
   ),
   ItemStructure(
     title: 'Minimalism',
     description: 'Simple and clean minimalistic designs.',
     imagePaths: ['assets/images/5/5-1.png', 'assets/images/5/5-2.png'],
     colors: [Colors.white, Colors.black, Colors.grey],
+    price: 15.99,
   ),
   ItemStructure(
     title: 'Technology',
@@ -75,6 +82,7 @@ List<ItemStructure> itemStructures = [
       'assets/images/6/6-3.png',
     ],
     colors: [Colors.blue, Colors.cyan, Colors.teal],
+    price: 15.99,
   ),
   ItemStructure(
     title: 'Food',
@@ -85,6 +93,7 @@ List<ItemStructure> itemStructures = [
       'assets/images/7/7-3.png',
     ],
     colors: [Colors.red, Colors.orange, Colors.yellow],
+    price: 15.99,
   ),
   ItemStructure(
     title: 'Travel',
@@ -96,6 +105,7 @@ List<ItemStructure> itemStructures = [
       'assets/images/8/8-4.jpg',
     ],
     colors: [Colors.blue, Colors.amber, Colors.green],
+    price: 15.99,
   ),
   ItemStructure(
     title: 'Sports',
@@ -108,6 +118,7 @@ List<ItemStructure> itemStructures = [
       'assets/images/9/9-5.jpg',
     ],
     colors: [Colors.green, Colors.red, Colors.blue],
+    price: 15.99,
   ),
   ItemStructure(
     title: 'Vintage',
@@ -120,6 +131,7 @@ List<ItemStructure> itemStructures = [
       'assets/images/10/10-5.jpg',
     ],
     colors: [Colors.brown, Colors.amber, Colors.grey],
+    price: 15.99,
   ),
   ItemStructure(
     title: 'Portraits',
@@ -130,6 +142,7 @@ List<ItemStructure> itemStructures = [
       'assets/images/11/11-3.jpg',
     ],
     colors: [Colors.pink, Colors.blueGrey, Colors.deepPurple],
+    price: 15.99,
   ),
   ItemStructure(
     title: 'Macro',
@@ -140,6 +153,7 @@ List<ItemStructure> itemStructures = [
       'assets/images/12/12-3.jpg',
     ],
     colors: [Colors.green, Colors.lime, Colors.teal],
+    price: 15.99,
   ),
   ItemStructure(
     title: 'Nightlife',
@@ -150,6 +164,7 @@ List<ItemStructure> itemStructures = [
       'assets/images/13/13-3.jpg',
     ],
     colors: [Colors.deepPurple, Colors.indigo, Colors.black],
+    price: 15.99,
   ),
   ItemStructure(
     title: 'Festivals',
@@ -160,6 +175,7 @@ List<ItemStructure> itemStructures = [
       'assets/images/14/14-3.jpg',
     ],
     colors: [Colors.orange, Colors.pink, Colors.yellow],
+    price: 15.99,
   ),
   ItemStructure(
     title: 'Miscellaneous',
@@ -170,5 +186,6 @@ List<ItemStructure> itemStructures = [
       'assets/images/15/15-3.jpg',
     ],
     colors: [Colors.blueGrey, Colors.cyan, Colors.deepOrange],
+    price: 15.99,
   ),
 ];
