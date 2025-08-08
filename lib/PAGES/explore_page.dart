@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:dripzora/DATA_STRUCTURE/item_structure.dart';
 import '../WIDGETS/squarewidget.dart';
 import '../WIDGETS/rectanglewidget.dart';
+import 'profile_page.dart';
+import '../DATA_STRUCTURE/user_structure.dart';
 
 class ExplorePage extends StatefulWidget {
-  const ExplorePage({super.key});
+  final UserStructure user;
+  const ExplorePage({super.key, required this.user});
 
   @override
   State<ExplorePage> createState() => _ExplorePageState();
@@ -12,15 +15,6 @@ class ExplorePage extends StatefulWidget {
 
 class _ExplorePageState extends State<ExplorePage> {
   final List<ItemStructure> allItems = itemStructures;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  // You can keep the `splitItemsIntoColumns` logic, but for a cleaner look,
-  // we'll use a single list with a staggered grid view.
-  // The original logic is good, but this example focuses on a different approach.
 
   void _onHeartPressed() {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -32,11 +26,9 @@ class _ExplorePageState extends State<ExplorePage> {
   }
 
   void _onProfilePressed() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Profile button clicked'),
-        duration: Duration(milliseconds: 800),
-      ),
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ProfilePage(user: widget.user)),
     );
   }
 
@@ -52,7 +44,7 @@ class _ExplorePageState extends State<ExplorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF121212), // A deep, rich dark grey
+      backgroundColor: const Color(0xFF121212),
       body: SafeArea(
         child: Column(
           children: [
@@ -64,13 +56,9 @@ class _ExplorePageState extends State<ExplorePage> {
                   hintText: 'Search',
                   hintStyle: const TextStyle(color: Colors.white54),
                   filled: true,
-                  fillColor:
-                      Colors.grey[850], // Slightly lighter than background
+                  fillColor: Colors.grey[850],
                   prefixIcon: const Icon(Icons.search, color: Colors.white54),
-                  suffixIcon: const Icon(
-                    Icons.mic,
-                    color: Colors.white54,
-                  ), // A cool addition
+                  suffixIcon: const Icon(Icons.mic, color: Colors.white54),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                     borderSide: BorderSide.none,
@@ -82,8 +70,6 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ),
             ),
-
-            // Staggered Grid for items
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
@@ -93,50 +79,41 @@ class _ExplorePageState extends State<ExplorePage> {
                     children: [
                       Expanded(
                         child: Column(
-                          children: [
-                            // Column 1
-                            ...List.generate(allItems.length, (index) {
-                              if (index % 3 == 0) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Rectanglewidget(item: allItems[index]),
-                                );
-                              }
-                              return const SizedBox.shrink(); // Hide other items
-                            }).whereType<Widget>().toList(), // Filter out nulls
-                          ],
+                          children: List.generate(allItems.length, (index) {
+                            if (index % 3 == 0) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Rectanglewidget(item: allItems[index]),
+                              );
+                            }
+                            return const SizedBox.shrink();
+                          }),
                         ),
                       ),
                       Expanded(
                         child: Column(
-                          children: [
-                            // Column 2
-                            ...List.generate(allItems.length, (index) {
-                              if (index % 3 == 1) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Squarewidget(item: allItems[index]),
-                                );
-                              }
-                              return const SizedBox.shrink();
-                            }).whereType<Widget>().toList(),
-                          ],
+                          children: List.generate(allItems.length, (index) {
+                            if (index % 3 == 1) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Squarewidget(item: allItems[index]),
+                              );
+                            }
+                            return const SizedBox.shrink();
+                          }),
                         ),
                       ),
                       Expanded(
                         child: Column(
-                          children: [
-                            // Column 3
-                            ...List.generate(allItems.length, (index) {
-                              if (index % 3 == 2) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Rectanglewidget(item: allItems[index]),
-                                );
-                              }
-                              return const SizedBox.shrink();
-                            }).whereType<Widget>().toList(),
-                          ],
+                          children: List.generate(allItems.length, (index) {
+                            if (index % 3 == 2) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Rectanglewidget(item: allItems[index]),
+                              );
+                            }
+                            return const SizedBox.shrink();
+                          }),
                         ),
                       ),
                     ],
@@ -147,10 +124,8 @@ class _ExplorePageState extends State<ExplorePage> {
           ],
         ),
       ),
-
-      // Bottom Navigation Bar with floating action button
       bottomNavigationBar: BottomAppBar(
-        color: const Color(0xFF1E1E1E), // A slightly lighter dark grey
+        color: const Color(0xFF1E1E1E),
         shape: const CircularNotchedRectangle(),
         notchMargin: 8.0,
         child: Row(
@@ -161,7 +136,13 @@ class _ExplorePageState extends State<ExplorePage> {
                 Icons.home_outlined,
                 color: Color.fromARGB(255, 229, 57, 53),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => ExplorePage(user: widget.user),
+                  ),
+                );
+              },
             ),
             IconButton(
               icon: const Icon(
@@ -170,7 +151,7 @@ class _ExplorePageState extends State<ExplorePage> {
               ),
               onPressed: _onHeartPressed,
             ),
-            const SizedBox(width: 48), // Space for the FAB
+            const SizedBox(width: 48),
             IconButton(
               icon: const Icon(
                 Icons.person_outline,
@@ -190,14 +171,8 @@ class _ExplorePageState extends State<ExplorePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromRGBO(
-          255,
-          0,
-          255,
-          255,
-        ), // Vibrant red for an accent
+        backgroundColor: const Color.fromRGBO(255, 0, 255, 1),
         onPressed: () {
-          // Action for the main button, e.g., posting a new item
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('FAB clicked!'),

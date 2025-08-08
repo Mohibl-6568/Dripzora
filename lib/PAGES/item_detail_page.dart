@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// Assuming DATA_STRUCTURE/item_structure.dart contains the ItemStructure class
 import 'package:dripzora/DATA_STRUCTURE/item_structure.dart';
 
 class ItemDetailPage extends StatefulWidget {
